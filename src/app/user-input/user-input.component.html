@@ -1,0 +1,65 @@
+<form (ngSubmit)="onSubmit()" >
+  <div class="input-group">
+    <p>
+      <label for="initial-investment" class="input-label">Počiatočná suma</label>
+      <span class="input-wrapper">
+        <input
+          id="initial-investment"
+          name="initial-investment"
+          type="number"
+          [(ngModel)]="enteredInitialInvestment" />
+      <span class="suffix">€</span>
+      </span>
+    </p>
+    <p>
+      <label for="annual-investment" class="input-label">Mesačný príspevok</label>
+      <span class="input-wrapper">
+        <input
+          id="annual-investment"
+          name="annual-investment"
+          type="number"
+          [(ngModel)]="enteredAnnualInvestment" />
+        <span class="suffix">€</span>
+      </span>
+    </p>
+  </div>
+  <div class="input-group">
+    <p>
+      <label for="expected-return" class="input-label">Očakávaný výnos</label>
+      <span class="input-wrapper">
+        <input
+          id="expected-return"
+          name="expected-return"
+          type="number"
+          [(ngModel)]="enteredExpectedReturn" />
+      <span class="suffix">%</span>
+      </span>
+    </p>
+    <p>
+      <label for="duration" class="input-label">Počet rokov</label>
+      <span class="input-wrapper">
+        <input
+          id="duration"
+          name="duration"
+          type="number"
+          [(ngModel)]="enteredDuration" />
+      </span>
+    </p>
+  </div>
+  <div class="input-group">
+    <p>
+      <label for="inflation-rate" class="input-label">Ročná inflácia</label>
+      <span class="input-wrapper">
+        <input
+          id="inflation-rate"
+          name="inflation-rate"
+          type="number"
+          [(ngModel)]="inflationRate" />
+        <span class="suffix">%</span>
+      </span>
+    </p>
+  </div>
+  <p>
+    <button>Vypočítať</button>
+  </p>
+</form>
