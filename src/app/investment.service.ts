@@ -8,7 +8,7 @@ export class InvestmentService {
 
   calculateInvestmentResults(data: InvestmentInputModel) {
 
-    const { initialAmount, annualContribution, expectedReturn, duration, inflationRate } = data;
+    const { initialAmount, annualContribution, expectedReturn, duration, inflationRate, startingYear } = data;
 
     const monthlyRate = expectedReturn / 100 / 12; // Mesačný úrok
     const totalMonths = duration * 12; // Celkový počet mesiacov
@@ -38,7 +38,8 @@ export class InvestmentService {
           totalWithoutInflation: parseFloat(totalWithoutInflation.toFixed(2)), // Suma bez inflácie
           totalWithInflation: parseFloat(totalWithInflation.toFixed(2)),    // Suma s infláciou
           monthlyContribution: parseFloat((currentAnnualContribution / 12).toFixed(2)), // Mesačný príspevok
-          monthlyContributionWithInflation: parseFloat((currentAnnualContributionWithInflation / 12).toFixed(2)) // Mesačný príspevok (+inflacia)
+          monthlyContributionWithInflation: parseFloat((currentAnnualContributionWithInflation / 12).toFixed(2)), // Mesačný príspevok (+inflacia)
+          startingYear: startingYear
         });
 
         // Zvýšime ročný príspevok o infláciu pre ďalší rok

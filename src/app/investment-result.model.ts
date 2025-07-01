@@ -4,4 +4,5 @@ export interface InvestmentResultModel {
   totalWithInflation: number; // Suma s infláciou
   monthlyContribution: number; // Mesačný príspevok
   monthlyContributionWithInflation: number; // Mesačný príspevok (+inflacia)
+  startingYear: number; // Rok začiatku napr. 2025
 }

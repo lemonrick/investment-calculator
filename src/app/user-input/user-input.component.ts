@@ -17,6 +17,7 @@ export class UserInputComponent {
   enteredExpectedReturn = signal('8');
   enteredDuration = signal('30');
   inflationRate = signal('4');
+  startingYear = signal('2025');
 
   constructor(private investmentService: InvestmentService) {}
 
@@ -26,7 +27,8 @@ export class UserInputComponent {
       annualContribution: +this.enteredAnnualInvestment(),
       expectedReturn: +this.enteredExpectedReturn(),
       duration: +this.enteredDuration(),
-      inflationRate: +this.inflationRate()
+      inflationRate: +this.inflationRate(),
+      startingYear: +this.startingYear()
     })
     /* this.enteredInitialInvestment.set('0');
     this.enteredAnnualInvestment.set('100');

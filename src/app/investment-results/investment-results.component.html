@@ -5,19 +5,20 @@
     <thead>
     <tr>
       <th>Rok</th>
-      <th>Mesačný príspevok</th>
-      <th>Hodnota portfólia</th>
+      <!--<th>Mesačný príspevok</th>-->
       <th>Mesačný príspevok navýšený o infláciu</th>
+      <th>Hodnota portfólia</th>
       <th>Hodnota portfólia s navýšeným príspevkom</th>
     </tr>
     </thead>
     <tbody>
       @for (result of results(); track result.year) {
         <tr>
-          <td> {{ result.year }} .</td>
-          <td> {{ result.monthlyContribution | currency:'EUR':'symbol' }} </td>
-          <td> {{ result.totalWithoutInflation | currency:'EUR':'symbol' }} </td>
+          {{ result.year }}. ({{ result.startingYear + result.year - 1 }})
+          <!--<td> {{ result.year }} .</td>-->
+          <!--<td> {{ result.monthlyContribution | currency:'EUR':'symbol' }} </td>-->
           <td> {{ result.monthlyContributionWithInflation | currency:'EUR':'symbol' }} </td>
+          <td> {{ result.totalWithoutInflation | currency:'EUR':'symbol' }} </td>
           <td> {{ result.totalWithInflation | currency:'EUR':'symbol' }} </td>
         </tr>
       }

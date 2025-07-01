@@ -74,3 +74,26 @@ button:hover {
   pointer-events: none;
   color: white;
 }
+
+.input-group-symmetric {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.input-group-symmetric p {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+

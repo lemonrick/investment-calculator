@@ -7,7 +7,9 @@
           id="initial-investment"
           name="initial-investment"
           type="number"
-          [(ngModel)]="enteredInitialInvestment" />
+          [(ngModel)]="enteredInitialInvestment"
+          required
+        />
       <span class="suffix">€</span>
       </span>
     </p>
@@ -18,7 +20,9 @@
           id="annual-investment"
           name="annual-investment"
           type="number"
-          [(ngModel)]="enteredAnnualInvestment" />
+          [(ngModel)]="enteredAnnualInvestment"
+          required
+        />
         <span class="suffix">€</span>
       </span>
     </p>
@@ -31,22 +35,12 @@
           id="expected-return"
           name="expected-return"
           type="number"
-          [(ngModel)]="enteredExpectedReturn" />
+          [(ngModel)]="enteredExpectedReturn"
+          required
+        />
       <span class="suffix">%</span>
       </span>
     </p>
-    <p>
-      <label for="duration" class="input-label">Počet rokov</label>
-      <span class="input-wrapper">
-        <input
-          id="duration"
-          name="duration"
-          type="number"
-          [(ngModel)]="enteredDuration" />
-      </span>
-    </p>
-  </div>
-  <div class="input-group">
     <p>
       <label for="inflation-rate" class="input-label">Ročná inflácia</label>
       <span class="input-wrapper">
@@ -54,8 +48,39 @@
           id="inflation-rate"
           name="inflation-rate"
           type="number"
-          [(ngModel)]="inflationRate" />
+          [(ngModel)]="inflationRate"
+          required
+        />
         <span class="suffix">%</span>
+      </span>
+    </p>
+  </div>
+  <div class="input-group input-group-symmetric">
+    <p>
+      <label for="duration" class="input-label">Počet rokov</label>
+      <span class="input-wrapper">
+        <input
+          id="duration"
+          name="duration"
+          type="number"
+          [(ngModel)]="enteredDuration"
+          required
+        />
+      </span>
+    </p>
+    <p>
+      <label for="starting-year" class="input-label">Rok začiatku</label>
+      <span class="input-wrapper">
+        <input
+          id="starting-year"
+          name="starting-year"
+          type="number"
+          [(ngModel)]="startingYear"
+          min="1000"
+          max="9999"
+          maxlength="4"
+          required
+        />
       </span>
     </p>
   </div>
