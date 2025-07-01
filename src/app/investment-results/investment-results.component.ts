@@ -13,4 +13,9 @@ export class InvestmentResultsComponent {
   private investmentService = inject(InvestmentService);
 
   results = this.investmentService.resultData.asReadonly();
+
+  get fixedMonthlyContribution(): number | null {
+    const res = this.results();
+    return res && res.length > 0 ? res[0].monthlyContribution : null;
+  }
 }
