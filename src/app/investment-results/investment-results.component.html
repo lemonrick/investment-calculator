@@ -15,7 +15,7 @@
     <tbody>
       @for (result of results(); track result.year) {
         <tr>
-          {{ result.year }}. ({{ result.startingYear + result.year - 1 }})
+          <td class="no-wrap">{{ result.year }}. ({{ result.startingYear + result.year - 1 }})</td>
           <!--<td> {{ result.year }} .</td>-->
           <!--<td> {{ result.monthlyContribution | currency:'EUR':'symbol' }} </td>-->
           <td> {{ result.monthlyContributionWithInflation | currency:'EUR':'symbol' }} </td>
