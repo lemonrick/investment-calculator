@@ -8,7 +8,7 @@ npm install --legacy-peer-deps
 
 ### Start the app in development mode (hot-code reloading, error reporting, etc.)
 ```bash
-ng serve
+npm start
 ```
 
 <p>
