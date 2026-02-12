@@ -1,23 +1,19 @@
 @if (!results()) {
-  <p class="center">Vyplňte formulár a stlačte "Vypočítať".</p>
+  <p class="center">Fill out the form and press "Calculate".</p>
 } @else {
   <table>
     <thead>
     <tr>
-      <th>Rok</th>
-      <!--<th>Mesačný príspevok</th>-->
-      <th>Mesačný príspevok navýšený o infláciu</th>
-      <!--<th>Hodnota portfólia</th>-->
-      <th>Hodnota portfólia s fixným príspevkom {{ fixedMonthlyContribution | currency:'EUR':'symbol' }}</th>
-      <th>Hodnota portfólia s navýšeným príspevkom</th>
+      <th>Year</th>
+      <th>Monthly contribution adjusted for inflation</th>
+      <th>Portfolio value with fixed monthly contribution {{ fixedMonthlyContribution | currency:'EUR':'symbol' }}</th>
+      <th>Portfolio value with inflation-adjusted contribution</th>
     </tr>
     </thead>
     <tbody>
       @for (result of results(); track result.year) {
         <tr>
           <td class="no-wrap">{{ result.year }}. ({{ result.startingYear + result.year - 1 }})</td>
-          <!--<td> {{ result.year }} .</td>-->
-          <!--<td> {{ result.monthlyContribution | currency:'EUR':'symbol' }} </td>-->
           <td> {{ result.monthlyContributionWithInflation | currency:'EUR':'symbol' }} </td>
           <td> {{ result.totalWithoutInflation | currency:'EUR':'symbol' }} </td>
           <td> {{ result.totalWithInflation | currency:'EUR':'symbol' }} </td>

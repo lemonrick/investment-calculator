@@ -1,17 +1,16 @@
-import {Component, signal} from '@angular/core';
+import {Component, OnInit, signal} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {InvestmentService} from "../investment.service";
 
 @Component({
-  selector: 'app-user-input',
-  standalone: true,
-  imports: [
-    FormsModule
-  ],
-  templateUrl: './user-input.component.html',
-  styleUrl: './user-input.component.css'
+    selector: 'app-user-input',
+    imports: [
+        FormsModule
+    ],
+    templateUrl: './user-input.component.html',
+    styleUrl: './user-input.component.css'
 })
-export class UserInputComponent {
+export class UserInputComponent implements OnInit {
   enteredInitialInvestment = signal('0');
   enteredAnnualInvestment = signal('100');
   enteredExpectedReturn = signal('8');
@@ -20,6 +19,10 @@ export class UserInputComponent {
   startingYear = signal('2025');
 
   constructor(private investmentService: InvestmentService) {}
+
+  ngOnInit(): void {
+    this.onSubmit();
+  }
 
   onSubmit() {
     this.investmentService.calculateInvestmentResults({
