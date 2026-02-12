@@ -14,6 +14,7 @@ export class InvestmentService {
     const totalMonths = duration * 12; // Celkový počet mesiacov
     let totalWithoutInflation = initialAmount + 1; // Suma bez inflácie
     let totalWithInflation = initialAmount + 1; // Suma s infláciou
+    let netInvestedWithInflation = initialAmount; // Netto vložené peniaze (s infláciou príspevku)
     let currentAnnualContribution = annualContribution * 12; // Ročný príspevok
     let currentAnnualContributionWithInflation = annualContribution * 12; // Ročný príspevok s infláciou
     const results = []; // Výsledky pre každý rok
@@ -27,6 +28,7 @@ export class InvestmentService {
       // S infláciou: mesačný príspevok sa zvyšuje o infláciu
       totalWithInflation *= (1 + monthlyRate);
       totalWithInflation += currentAnnualContributionWithInflation / 12;
+      netInvestedWithInflation += currentAnnualContributionWithInflation / 12;
 
       // Na konci každého roka vypočítame a uložíme výsledky
       if (month % 12 === 0) {
@@ -35,8 +37,10 @@ export class InvestmentService {
         // Vložíme výsledky do poľa
         results.push({
           year: year,
+          initialAmount: initialAmount,
           totalWithoutInflation: parseFloat(totalWithoutInflation.toFixed(2)), // Suma bez inflácie
           totalWithInflation: parseFloat(totalWithInflation.toFixed(2)),    // Suma s infláciou
+          netInvestedWithInflation: parseFloat(netInvestedWithInflation.toFixed(2)), // Netto vložené peniaze (s infláciou)
           monthlyContribution: parseFloat((currentAnnualContribution / 12).toFixed(2)), // Mesačný príspevok
           monthlyContributionWithInflation: parseFloat((currentAnnualContributionWithInflation / 12).toFixed(2)), // Mesačný príspevok (+inflacia)
           startingYear: startingYear
