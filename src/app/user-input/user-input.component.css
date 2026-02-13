@@ -32,6 +32,11 @@ input {
   font-size: 1rem;
 }
 
+input.invalid-input {
+  border-color: #ff8a8a;
+  background-color: rgba(141, 24, 24, 0.35);
+}
+
 button {
   width: 100%;
   padding: 0.5rem;

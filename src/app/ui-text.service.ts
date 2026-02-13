@@ -9,7 +9,7 @@ const translations = {
     initialInvestment: 'Initial investment',
     monthlyContribution: 'Monthly contribution',
     expectedAnnualReturn: 'Expected annual return',
-    annualInflation: 'Annual inflation',
+    annualInflation: 'Annual contribution increase',
     investmentDurationYears: 'Investment duration (years)',
     startYear: 'Start year',
     calculate: 'Calculate',
@@ -30,7 +30,7 @@ const translations = {
     initialInvestment: 'Počiatočná investícia',
     monthlyContribution: 'Mesačný príspevok',
     expectedAnnualReturn: 'Očakávaný ročný výnos',
-    annualInflation: 'Ročná inflácia',
+    annualInflation: 'Ročný nárast príspevku',
     investmentDurationYears: 'Dĺžka investície (roky)',
     startYear: 'Počiatočný rok',
     calculate: 'Vypočítať',
@@ -48,13 +48,22 @@ const translations = {
 } as const;
 
 type TranslationKey = keyof typeof translations.en;
+const LANGUAGE_STORAGE_KEY = 'investment-calculator.language';
 
 @Injectable({providedIn: 'root'})
 export class UiTextService {
   language = signal<Language>('en');
 
+  constructor() {
+    const savedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY);
+    if (savedLanguage === 'en' || savedLanguage === 'sk') {
+      this.language.set(savedLanguage);
+    }
+  }
+
   setLanguage(language: Language) {
     this.language.set(language);
+    localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
   }
 
   t(key: TranslationKey, params?: Record<string, string | number>): string {

@@ -6,9 +6,14 @@
 npm install
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+### 🚀 Start the app in development mode (hot-code reloading, error reporting, etc.)
 ```bash
 npm start
+```
+
+### 🧪 Running Tests (Vitest)
+```bash
+npm test
 ```
 
 <p>
