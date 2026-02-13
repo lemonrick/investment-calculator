@@ -1,5 +1,5 @@
 <header>
-  <div class="language-switch" aria-label="Language switch">
+  <div class="language-switch" [class.hidden]="hideLanguageSwitch()" aria-label="Language switch">
     <button
       type="button"
       (click)="uiText.setLanguage(uiText.language() === 'en' ? 'sk' : 'en')"

@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, HostListener, inject, signal} from '@angular/core';
 import {UiTextService} from "../ui-text.service";
 
 @Component({
@@ -8,4 +8,10 @@ import {UiTextService} from "../ui-text.service";
 })
 export class HeaderComponent {
   uiText = inject(UiTextService);
+  hideLanguageSwitch = signal(false);
+
+  @HostListener('window:scroll')
+  onWindowScroll() {
+    this.hideLanguageSwitch.set(window.scrollY > 140);
+  }
 }
