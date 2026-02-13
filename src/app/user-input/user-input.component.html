@@ -1,7 +1,7 @@
 <form (ngSubmit)="onSubmit()" >
   <div class="input-group">
     <p>
-      <label for="initial-investment" class="input-label">Initial investment</label>
+      <label for="initial-investment" class="input-label">{{ uiText.t('initialInvestment') }}</label>
       <span class="input-wrapper">
         <input
           id="initial-investment"
@@ -14,7 +14,7 @@
       </span>
     </p>
     <p>
-      <label for="annual-investment" class="input-label">Monthly contribution</label>
+      <label for="annual-investment" class="input-label">{{ uiText.t('monthlyContribution') }}</label>
       <span class="input-wrapper">
         <input
           id="annual-investment"
@@ -29,7 +29,7 @@
   </div>
   <div class="input-group">
     <p>
-      <label for="expected-return" class="input-label">Expected annual return</label>
+      <label for="expected-return" class="input-label">{{ uiText.t('expectedAnnualReturn') }}</label>
       <span class="input-wrapper">
         <input
           id="expected-return"
@@ -42,7 +42,7 @@
       </span>
     </p>
     <p>
-      <label for="inflation-rate" class="input-label">Annual inflation</label>
+      <label for="inflation-rate" class="input-label">{{ uiText.t('annualInflation') }}</label>
       <span class="input-wrapper">
         <input
           id="inflation-rate"
@@ -57,7 +57,7 @@
   </div>
   <div class="input-group input-group-symmetric">
     <p>
-      <label for="duration" class="input-label">Investment duration (years)</label>
+      <label for="duration" class="input-label">{{ uiText.t('investmentDurationYears') }}</label>
       <span class="input-wrapper">
         <input
           id="duration"
@@ -69,7 +69,7 @@
       </span>
     </p>
     <p>
-      <label for="starting-year" class="input-label">Start year</label>
+      <label for="starting-year" class="input-label">{{ uiText.t('startYear') }}</label>
       <span class="input-wrapper">
         <input
           id="starting-year"
@@ -85,6 +85,6 @@
     </p>
   </div>
   <p>
-    <button>Calculate</button>
+    <button>{{ uiText.t('calculate') }}</button>
   </p>
 </form>

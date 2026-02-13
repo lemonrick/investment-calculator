@@ -1,4 +1,12 @@
 <header>
+  <div class="language-switch" aria-label="Language switch">
+    <button
+      type="button"
+      (click)="uiText.setLanguage(uiText.language() === 'en' ? 'sk' : 'en')"
+    >
+      {{ uiText.language().toUpperCase() }}
+    </button>
+  </div>
   <img src="investment-calculator-logo.png" alt="A money bag">
-  <h1>Investment Calculator - <span class="header-subtitle">S&P 500 Index</span></h1>
+  <h1>{{ uiText.t('headerTitle') }} - <span class="header-subtitle">{{ uiText.t('headerSubtitle') }}</span></h1>
 </header>

@@ -1,6 +1,7 @@
 import {Component, OnInit, signal} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {InvestmentService} from "../investment.service";
+import {UiTextService} from "../ui-text.service";
 
 @Component({
     selector: 'app-user-input',
@@ -14,11 +15,14 @@ export class UserInputComponent implements OnInit {
   enteredInitialInvestment = signal('0');
   enteredAnnualInvestment = signal('100');
   enteredExpectedReturn = signal('8');
-  enteredDuration = signal('30');
+  enteredDuration = signal('35');
   inflationRate = signal('4');
   startingYear = signal('2025');
 
-  constructor(private investmentService: InvestmentService) {}
+  constructor(
+    private investmentService: InvestmentService,
+    public uiText: UiTextService
+  ) {}
 
   ngOnInit(): void {
     this.onSubmit();
@@ -36,7 +40,7 @@ export class UserInputComponent implements OnInit {
     /* this.enteredInitialInvestment.set('0');
     this.enteredAnnualInvestment.set('100');
     this.enteredExpectedReturn.set('8');
-    this.enteredDuration.set('30');
+    this.enteredDuration.set('35');
     this.inflationRate.set('4'); */
   }
 

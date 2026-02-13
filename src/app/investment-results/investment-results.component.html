@@ -1,42 +1,75 @@
 @if (!results()) {
-  <p class="center">Fill out the form and press "Calculate".</p>
+  <p class="center">{{ uiText.t('fillOutForm') }}</p>
 } @else {
-  @if (equivalentFixedMonthlyContribution !== null) {
+  @if (showInflationMode() && equivalentFixedMonthlyContribution !== null) {
     <p class="center equivalent-line">
-      <span>Equivalent fixed monthly contribution </span>
-      <span class="equivalent-over">over {{ results()![0].year }} years: {{ equivalentFixedMonthlyContribution | currency:'EUR':'symbol' }}</span>
+      <span>{{ uiText.t('equivalentFixedMonthlyContribution') }} </span>
+      <span class="equivalent-over">
+        {{ uiText.t('overYears', { years: results()![0].year }) }} {{ equivalentFixedMonthlyContribution | currency:'EUR':'symbol' }}
+      </span>
     </p>
   }
   <table>
     <thead>
     <tr>
-      <th>Year</th>
-      <th>Monthly contribution adjusted for inflation</th>
+      <th>{{ uiText.t('year') }}</th>
       <th>
-        <button type="button" class="header-toggle" (click)="toggleFixedContributionColumn()">
-          @if (showNetInvested()) {
-            Net invested with inflation-adjusted contribution
+        <button type="button" class="header-toggle" (click)="toggleContributionMode()">
+          @if (showInflationMode()) {
+            {{ uiText.t('monthlyContributionAdjustedForInflation') }}
           } @else {
-            Portfolio value with fixed monthly contribution {{ fixedMonthlyContribution | currency:'EUR':'symbol' }}
+            {{ uiText.t('fixedMonthlyContribution') }} {{ fixedMonthlyContribution | currency:'EUR':'symbol' }}
           }
+          <span class="header-affordance" aria-hidden="true">⇅</span>
         </button>
       </th>
-      <th>Portfolio value with inflation-adjusted contribution</th>
+      <th>
+        <button type="button" class="header-toggle" (click)="toggleContributionMode()">
+          @if (showInflationMode()) {
+            {{ uiText.t('netInvestedWithInflationAdjustedContribution') }}
+          } @else {
+            {{ uiText.t('netInvestedWithFixedMonthlyContribution') }}
+          }
+          <span class="header-affordance" aria-hidden="true">⇅</span>
+        </button>
+      </th>
+      <th>
+        <button type="button" class="header-toggle" (click)="toggleContributionMode()">
+          @if (showInflationMode()) {
+            {{ uiText.t('portfolioValueWithInflationAdjustedContribution') }}
+          } @else {
+            {{ uiText.t('portfolioValueWithFixedMonthlyContribution') }}
+          }
+          <span class="header-affordance" aria-hidden="true">⇅</span>
+        </button>
+      </th>
     </tr>
     </thead>
     <tbody>
       @for (result of results(); track result.year) {
         <tr>
           <td class="no-wrap">{{ result.year }}. ({{ result.startingYear + result.year - 1 }})</td>
-          <td> {{ result.monthlyContributionWithInflation | currency:'EUR':'symbol' }} </td>
           <td>
-            @if (showNetInvested()) {
+            @if (showInflationMode()) {
+              {{ result.monthlyContributionWithInflation | currency:'EUR':'symbol' }}
+            } @else {
+              {{ result.monthlyContribution | currency:'EUR':'symbol' }}
+            }
+          </td>
+          <td>
+            @if (showInflationMode()) {
               {{ result.netInvestedWithInflation | currency:'EUR':'symbol' }}
+            } @else {
+              {{ result.netInvestedWithoutInflation | currency:'EUR':'symbol' }}
+            }
+          </td>
+          <td>
+            @if (showInflationMode()) {
+              {{ result.totalWithInflation | currency:'EUR':'symbol' }}
             } @else {
               {{ result.totalWithoutInflation | currency:'EUR':'symbol' }}
             }
           </td>
-          <td> {{ result.totalWithInflation | currency:'EUR':'symbol' }} </td>
         </tr>
       }
     </tbody>

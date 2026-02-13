@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
+import {UiTextService} from "../ui-text.service";
 
 @Component({
     selector: 'app-header',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
     styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-
+  uiText = inject(UiTextService);
 }

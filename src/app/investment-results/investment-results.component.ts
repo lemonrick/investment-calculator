@@ -1,6 +1,7 @@
-import {Component, inject, signal} from '@angular/core';
+import {Component, effect, inject, signal} from '@angular/core';
 import {CurrencyPipe} from "@angular/common";
 import {InvestmentService} from "../investment.service";
+import {UiTextService} from "../ui-text.service";
 
 @Component({
     selector: 'app-investment-results',
@@ -10,9 +11,21 @@ import {InvestmentService} from "../investment.service";
 })
 export class InvestmentResultsComponent {
   private investmentService = inject(InvestmentService);
-  showNetInvested = signal(true);
+  uiText = inject(UiTextService);
+  showInflationMode = signal(true);
 
   results = this.investmentService.resultData.asReadonly();
+
+  constructor() {
+    effect(() => {
+      const res = this.results();
+      if (!res || res.length === 0) {
+        return;
+      }
+
+      this.showInflationMode.set(this.investmentService.lastInflationRate() !== 0);
+    });
+  }
 
   get fixedMonthlyContribution(): number | null {
     const res = this.results();
@@ -20,6 +33,10 @@ export class InvestmentResultsComponent {
   }
 
   get equivalentFixedMonthlyContribution(): number | null {
+    if (!this.showInflationMode()) {
+      return null;
+    }
+
     const res = this.results();
     if (!res || res.length === 0) {
       return null;
@@ -34,7 +51,7 @@ export class InvestmentResultsComponent {
     return (latest.netInvestedWithInflation - latest.initialAmount) / months;
   }
 
-  toggleFixedContributionColumn() {
-    this.showNetInvested.update((value) => !value);
+  toggleContributionMode() {
+    this.showInflationMode.update((value) => !value);
   }
 }

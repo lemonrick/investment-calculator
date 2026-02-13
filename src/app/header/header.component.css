@@ -5,6 +5,24 @@ header {
   padding: 0 0.5rem;
 }
 
+.language-switch {
+  position: fixed;
+  right: 1rem;
+  top: 1rem;
+  z-index: 1000;
+  border-radius: 999px;
+  background: transparent;
+}
+
+.language-switch button {
+  all: unset;
+  cursor: pointer;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.5rem;
+  color: rgba(194, 233, 224, 0.92);
+}
+
 header img {
   width: 5rem;
   height: 5rem;
