@@ -1,4 +1,4 @@
-import {Component, OnInit, signal} from '@angular/core';
+import {Component, inject, OnInit, signal} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {InvestmentService} from "../investment.service";
 import {UiTextService} from "../ui-text.service";
@@ -20,10 +20,8 @@ export class UserInputComponent implements OnInit {
   inflationRate = signal('4');
   startingYear = signal('2025');
 
-  constructor(
-    private investmentService: InvestmentService,
-    public uiText: UiTextService
-  ) {}
+  private readonly investmentService = inject(InvestmentService);
+  readonly uiText = inject(UiTextService);
 
   ngOnInit(): void {
     this.onSubmit();

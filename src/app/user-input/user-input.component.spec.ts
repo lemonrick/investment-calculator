@@ -1,14 +1,32 @@
 import { describe, expect, it, vi } from 'vitest';
+import { TestBed } from '@angular/core/testing';
 import { UserInputComponent } from './user-input.component';
 import { UiTextService } from '../ui-text.service';
+import { InvestmentService } from '../investment.service';
 
 describe('UserInputComponent', () => {
-  it('clears results on submit when values are invalid', () => {
+  const setup = () => {
+    TestBed.resetTestingModule();
+
     const investmentService = {
       calculateInvestmentResults: vi.fn(),
       clearResults: vi.fn()
     };
-    const component = new UserInputComponent(investmentService as never, new UiTextService());
+
+    TestBed.configureTestingModule({
+      imports: [UserInputComponent],
+      providers: [
+        { provide: InvestmentService, useValue: investmentService },
+        { provide: UiTextService, useValue: new UiTextService() }
+      ]
+    });
+
+    const fixture = TestBed.createComponent(UserInputComponent);
+    return { component: fixture.componentInstance, investmentService };
+  };
+
+  it('clears results on submit when values are invalid', () => {
+    const { component, investmentService } = setup();
     component.enteredInitialInvestment.set('-10');
 
     component.onSubmit();
@@ -18,11 +36,7 @@ describe('UserInputComponent', () => {
   });
 
   it('submits valid values to the investment service', () => {
-    const investmentService = {
-      calculateInvestmentResults: vi.fn(),
-      clearResults: vi.fn()
-    };
-    const component = new UserInputComponent(investmentService as never, new UiTextService());
+    const { component, investmentService } = setup();
 
     component.enteredInitialInvestment.set('1000');
     component.enteredMonthlyContribution.set('100');
@@ -45,11 +59,7 @@ describe('UserInputComponent', () => {
   });
 
   it('clears results during input changes when the form becomes invalid', () => {
-    const investmentService = {
-      calculateInvestmentResults: vi.fn(),
-      clearResults: vi.fn()
-    };
-    const component = new UserInputComponent(investmentService as never, new UiTextService());
+    const { component, investmentService } = setup();
     component.enteredDuration.set('0');
 
     component.onInputChange();
