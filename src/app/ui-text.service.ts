@@ -55,6 +55,9 @@ export class UiTextService {
   language = signal<Language>('en');
 
   constructor() {
+    if (typeof window === 'undefined') {
+      return;
+    }
     const savedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY);
     if (savedLanguage === 'en' || savedLanguage === 'sk') {
       this.language.set(savedLanguage);
@@ -63,7 +66,9 @@ export class UiTextService {
 
   setLanguage(language: Language) {
     this.language.set(language);
-    localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
+    }
   }
 
   t(key: TranslationKey, params?: Record<string, string | number>): string {

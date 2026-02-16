@@ -5,7 +5,7 @@
     <p class="center equivalent-line">
       <span>{{ uiText.t('equivalentFixedMonthlyContribution') }} </span>
       <span class="equivalent-over">
-        {{ uiText.t('overYears', { years: results()![0].year }) }} {{ equivalentFixedMonthlyContribution | currency:'EUR':'symbol' }}
+        {{ uiText.t('overYears', { years: (results() ?? [])[0]?.year ?? 0 }) }} {{ equivalentFixedMonthlyContribution | currency:'EUR':'symbol' }}
       </span>
     </p>
   }

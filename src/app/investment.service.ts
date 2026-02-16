@@ -54,7 +54,7 @@ export class InvestmentService {
       currentMonthlyContributionWithInflation *= (1 + inflationRate / 100);
     }
 
-    this.resultData.set(results.reverse());
+    this.resultData.set([...results].reverse());
 
   }
 
